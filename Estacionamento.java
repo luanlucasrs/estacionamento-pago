@@ -1,4 +1,7 @@
 package estacionamento.principal;
+
+import java.util.ArrayList;
+
 public class Estacionamento {
 
 	private List<Cliente> clientes; 
