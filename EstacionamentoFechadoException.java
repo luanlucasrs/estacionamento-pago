@@ -1,4 +1,4 @@
-package estacionamento.exceptions;
+package ProjetoFinalOO.exceptions;
 
 public class EstacionamentoFechadoException extends Exception {
 
