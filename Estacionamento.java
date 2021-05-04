@@ -1,4 +1,4 @@
-
+package estacionamento.principal;
 public class Estacionamento {
 
 	private List<Cliente> clientes; 
