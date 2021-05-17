@@ -15,7 +15,7 @@ public class ControleGaragem {
 		this.veiculo = new Veiculo();
 	}
 	
-	public ControleGaragem (Calendar dataEntrada, Calendar data Saida, Veiculo veiculo) {
+	public ControleGaragem (Calendar dataEntrada, Calendar dataSaida, Veiculo veiculo) {
 		super();
 		this.dataEntrada = dataEntrada; 
 		this.dataSaida = dataSaida; 
