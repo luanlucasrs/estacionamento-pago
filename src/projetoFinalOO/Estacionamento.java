@@ -540,7 +540,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 	
 		public void vincularVeiculosCliente(Cliente cliente, Veiculo veiculo) {
 
-		cliente.addVeiculo(veiculo); //acrescenta o veÃ­culo ao cadastro do cliente
+		cliente.addVeiculo(veiculo); //acrescenta o veículo ao cadastro do cliente
 
 		String message = "Veiculo vinculado com sucesso.";
 
@@ -610,10 +610,25 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 	}
 
-	// MÃ©todo para adicionar todos os clientes em uma lista
+	// Método para adicionar todos os clientes em uma lista
 	public void addCliente(Cliente cliente) {
 		clientes.add(cliente);
 	}
+	
+	// Método para buscar cliente pela CNH
+	public Cliente buscaCNH(int CNH) {
+
+		for (Cliente cliente : clientes) {
+
+			if (cliente.getNumeroCNH() == CNH) {
+				return cliente;
+			}
+
+		}
+
+		return null;
+	}
+
 	
 
 }
