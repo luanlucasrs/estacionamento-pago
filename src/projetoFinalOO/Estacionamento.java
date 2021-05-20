@@ -116,6 +116,45 @@ public class Estacionamento {
 
 	}
 	
+public boolean isAberto() throws EstacionamentoFechadoException {
+		
+		Calendar dataAtual = Calendar.getInstance();
+
+		String message = "Digite a hora atual para teste no formato dd/MM/yyyy hh:mm";
+		String dataInformada = JOptionPane.showInputDialog(message);
+
+		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+
+		Date date = new Date();
+		try {
+			date = dt.parse(dataInformada);
+
+		} catch (Exception e) {
+		}
+		
+		dataAtual.setTime(date);
+		
+		Calendar dataAbertura = Calendar.getInstance();
+		dataAbertura.set(Calendar.HOUR_OF_DAY, 5);
+		dataAbertura.set(Calendar.MINUTE, 59);
+		
+		Calendar dataFechamento = Calendar.getInstance();
+		dataFechamento.set(Calendar.HOUR_OF_DAY, 20);
+		dataFechamento.set(Calendar.MINUTE, 01);
+		
+		if (dataAtual.before(dataAbertura) || dataAtual.after(dataFechamento)) {
+			throw new EstacionamentoFechadoException();
+		}
+		
+		return true;
+	}
+
+	/**
+	 * Sequencia de chamada de funções predeterminadas na UML
+	 * 
+	 */
+
+	
 	public Veiculo consultarPlaca (String placa) {
 		return new Veiculo; 
 	}
