@@ -574,6 +574,31 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 			return null;
 		}
+		
+		public Veiculo buscaPlacaMensalista(String placa) {
+
+			for (Veiculo veiculo : veiculosMensalistas) {
+
+				if (veiculo.getPlaca().equals(placa)) {
+
+					return veiculo;
+				}
+
+			}
+
+			return null;
+		}
+
+		public void addVeiculo(Veiculo CadastroVeiculo) {
+
+			if (CadastroVeiculo.getMensalista() == true) {
+
+				veiculosMensalistas.add(CadastroVeiculo); // Adicionando a lista especifica só de mensalistas
+			}
+
+			veiculos.add(CadastroVeiculo); // Adicionando todos a uma outra lista (mensalistas ou não)
+
+		}
 	
 
 }
