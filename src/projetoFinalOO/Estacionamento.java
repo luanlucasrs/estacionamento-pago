@@ -629,6 +629,11 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 		return null;
 	}
 
-	
+	// Método para criar a lista de Veículos
+	public static List<Veiculo> listaVeiculos(Veiculo veiculo) {
+		ArrayList<Veiculo> novoVeiculo = new ArrayList<Veiculo>();
+		novoVeiculo.add(veiculo);
+		return novoVeiculo;
+	}
 
 }
