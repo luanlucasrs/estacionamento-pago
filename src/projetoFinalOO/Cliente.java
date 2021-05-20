@@ -78,6 +78,7 @@ public class Cliente {
 		this.veiculos = veiculos;
 	}
 
+	//Adiciona veiculos à lista de veiculos do cliente 
 	public void addVeiculo(Veiculo veiculo) {
 		veiculos.add(veiculo);
 	}
