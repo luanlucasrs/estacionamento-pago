@@ -26,7 +26,7 @@ public class ControleGaragem {
 		return dataEntrada; 
 	}
 	
-	public void SetDataEntrada (Calendar dataEntrada) {
+	public void setDataEntrada (Calendar dataEntrada) {
 		this.dataEntrada = dataEntrada;
 		
 	}
