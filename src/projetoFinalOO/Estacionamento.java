@@ -707,7 +707,14 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 		return novoVeiculo;
 	}
 	///
-	//Falta buscaData
-	/////
+	public ControleGaragem buscaData(Veiculo veiculo) {
+		for (ControleGaragem controleGaragem : listaData) {
+			if (controleGaragem.getVeiculo().equals(veiculo)) {
+				return controleGaragem;
+			}
+		}
+
+		return null;
+	}
 
 }
