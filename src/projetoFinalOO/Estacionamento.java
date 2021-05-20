@@ -550,7 +550,78 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 	}
 	
 	
-	// FALTA AQUI REGISTRAR ENTRADA VEICULO E REGISTRAR SAIDA VEICULO
+	public boolean registrarEntradaVeiculo(Veiculo veiculo) throws DadosAcessoIncompletosException {
+
+		Calendar dataEntrada = Calendar.getInstance();
+		
+		String dataInformada = JOptionPane.showInputDialog("Digite a hora da entrada no formato dd/MM/yyyy hh:mm");
+
+		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+
+		Date date = new Date();
+		try {
+			date = dt.parse(dataInformada);
+
+		} catch (Exception e) {
+			throw new DadosAcessoIncompletosException();
+		}
+		dataEntrada.setTime(date);
+		
+		ControleGaragem controleGaragem = new ControleGaragem(dataEntrada, null, veiculo);
+		addControle(controleGaragem);
+
+		String message = "Data registrada com sucesso.";
+
+		JOptionPane.showMessageDialog(null, message);
+
+		return false;
+	}
+
+	public boolean registrarSaidaVeiculo(Veiculo veiculo) throws PeriodoInvalidoException, DadosAcessoIncompletosException {
+
+		Veiculo veiculoMensalista = buscaPlacaMensalista(veiculo.getPlaca());
+
+		if (veiculoMensalista != null) {
+			JOptionPane.showMessageDialog(null, "Mensalista >>> Saída liberada");
+			return true;
+		}
+
+		String message = "Digite a hora da saída no formato dd/MM/yyyy hh:mm";
+		String dataInformada = JOptionPane.showInputDialog(message);
+
+		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+
+		Date date = new Date();
+		try {
+			date = dt.parse(dataInformada);
+
+		} catch (Exception e) {
+			throw new DadosAcessoIncompletosException();
+		}
+
+		Calendar dataSaida = Calendar.getInstance();
+		dataSaida.setTime(date);
+
+		ControleGaragem controleGaragem = buscaData(veiculo);
+
+		controleGaragem.setDataSaida(dataSaida);
+
+		double valorCobranca = cobrar(controleGaragem);
+		
+		long minutos = ChronoUnit.MINUTES.between(controleGaragem.getDataEntrada().toInstant(), 
+			controleGaragem.getDataSaida().toInstant());
+		
+		if (minutos < 1) {
+			throw new PeriodoInvalidoException();
+		}
+
+		JOptionPane.showMessageDialog(null, "Valor a ser cobrado: R$ " + valorCobranca + ".");
+		
+		listaData.remove(controleGaragem);
+
+		return true;
+	}
+
 	
 	
 	
