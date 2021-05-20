@@ -11,6 +11,7 @@ public class Cliente {
 	private String numeroTelefone;
 	private int numeroCNH;
 	private List<Veiculo> veiculos;
+	//ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	
 	public Cliente() {
 		this.nome = "";
@@ -78,8 +79,14 @@ public class Cliente {
 		this.veiculos = veiculos;
 	}
 
-	//Adiciona veiculos à lista de veiculos do cliente 
+	//Método para adicionar um veículo a um cliente
 	public void addVeiculo(Veiculo veiculo) {
 		veiculos.add(veiculo);
 	}
+	
+	// Método para adicionar todos os clientes em uma lista
+	//public void addCliente(Cliente cliente) {
+	//	clientes.add(cliente); 		
+	//}
+ 
 }

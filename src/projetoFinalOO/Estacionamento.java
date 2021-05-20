@@ -34,17 +34,17 @@ public class Estacionamento {
 		
 		try {
 			if (estacionamento.isAberto()) {
-				// FunÃ§Ã£o para rodar o menu
+				// Fun��o para rodar o menu
 				estacionamento.rodarMenu();
 			}
 		
 		} catch (EstacionamentoFechadoException e) {
-			JOptionPane.showMessageDialog(null, "Estacionamento estÃ¡ fechado.", "Erro", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Estacionamento est� fechado.", "Erro", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
 	/**
-	 * SequÃƒÂªncia de cÃƒÂ³digo para criaÃƒÂ§ÃƒÂ£o do menu de visualizaÃƒÂ§ÃƒÂ£o da interface
+	 * Sequência de código para criação do menu de visualização da interface
 	 *
 	 * Funcionamento 1) Int menu: primeira tela 2) void rodarMenu: funcionamento do
 	 * menu 3) rodarMenu: chamada na main
@@ -55,24 +55,24 @@ public class Estacionamento {
 		// variavel para botao
 		int valorDoBotao = 0;
 
-		// Alocar botÃƒÂµes
-		Object[] funcoes = { "Iniciar serviÃ§o", };
-		int funcao = JOptionPane.showOptionDialog(null, "Bem-vindos ao serviÃ§o EstacioneX", "O que deseja fazer?",
+		// Alocar botões
+		Object[] funcoes = { "Iniciar servi�o", };
+		int funcao = JOptionPane.showOptionDialog(null, "Bem-vindos ao servi�o EstacioneX", "O que deseja fazer?",
 				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 
 		// Consultar Placa
 		if (funcao == 0) {
-			consultarPlaca(null); // My: /eu nÃƒÂ£o achei esse mÃƒÂ©todo no seu codigo aqui, mas adicionar dentro dele
-									// o mÃƒÂ©todo BuscaPlaca
+			consultarPlaca(null); // My: /eu não achei esse método no seu codigo aqui, mas adicionar dentro dele
+									// o método BuscaPlaca
 
 			/**
-			 * Passo-a-passo dessa funÃƒÂ§ÃƒÂ£o
+			 * Passo-a-passo dessa função
 			 * 
 			 * 1) Insere Placa 2) Cadastrada? (s/n)
 			 * 
 			 * 2.1)Caso sim: Registrar entrada ou saida? Caso entrada
-			 * registrarEntradaVeiculo() Caso saida registrarSaidaVeiculo() 2.2)Caso nÃƒÂ£o:
-			 * Cadastrar veiculo novo?(s/n) Caso sim cadastrarVeiculo() Caso nÃƒÂ£o Encerra
+			 * registrarEntradaVeiculo() Caso saida registrarSaidaVeiculo() 2.2)Caso não:
+			 * Cadastrar veiculo novo?(s/n) Caso sim cadastrarVeiculo() Caso não Encerra
 			 * 
 			 */
 
@@ -83,20 +83,20 @@ public class Estacionamento {
 		// cadastrarVeiculo();
 
 		/**
-		 * Passo-a-passo dessa funÃƒÂ§ÃƒÂ£o
+		 * Passo-a-passo dessa função
 		 * 
-		 * 1) Dados Veiculo 2) Ele ÃƒÂ© mensalista? (s/n)
+		 * 1) Dados Veiculo 2) Ele é mensalista? (s/n)
 		 * 
 		 * 2.1) Caso sim a) Insira CNH (existe/ou n) a.1)Caso exista
 		 * vinculcarVeiculoCliente(); a.2) Caso nao exista cadastrarCliente(); 2.2) Caso
-		 * nÃƒÂ£o Deseja registrar entrada? (s/n) Caso sim registrarEntradaVeiculo() Caso
+		 * não Deseja registrar entrada? (s/n) Caso sim registrarEntradaVeiculo() Caso
 		 * nao sair
 		 *
 		 */
 
 		// }
 
-		// Cancelar operaÃƒÂ§ÃƒÂ£o
+		// Cancelar operação
 		else if (funcao == -1) {
 			valorDoBotao = -1;
 		}
@@ -105,7 +105,7 @@ public class Estacionamento {
 	}
 
 	/**
-	 * FunÃƒÂ§ÃƒÂ£o responsÃƒÂ¡vel pelo funcionamento do menu atÃƒÂ© que a interface seja
+	 * Função responsável pelo funcionamento do menu até que a interface seja
 	 * fechada
 	 */
 	public void rodarMenu() {
@@ -116,7 +116,7 @@ public class Estacionamento {
 
 	}
 	
-public boolean isAberto() throws EstacionamentoFechadoException {
+	public boolean isAberto() throws EstacionamentoFechadoException {
 		
 		Calendar dataAtual = Calendar.getInstance();
 
@@ -150,7 +150,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 	}
 
 	/**
-	 * Sequencia de chamada de funÃ§Ãµes predeterminadas na UML
+	 * Sequencia de chamada de funções predeterminadas na UML
 	 * 
 	 */
 
@@ -158,7 +158,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 		/**
 		 * Rotina simplesmente representativa para entender o final do codigo Esta
-		 * rotina deve ser alterada para testar se realmente existe e nÃƒÂ£o por uma
+		 * rotina deve ser alterada para testar se realmente existe e não por uma
 		 * option pane e checando os arquivos txt
 		 * 
 		 */
@@ -168,7 +168,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 		JPanel myPanel = new JPanel();
 		if (valorDoBotao == 0) {
 			myPanel.setLayout(new GridLayout(1, 2));
-			myPanel.add(new JLabel("Insira a placa do veÃ­culo: "));
+			myPanel.add(new JLabel("Insira a placa do ve�culo: "));
 			myPanel.add(campoTestePlaca);
 
 			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Checar placa", JOptionPane.OK_CANCEL_OPTION);
@@ -196,8 +196,8 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 			if (buscaPlaca(placa2) != null) { // Se placa existir
 
-				Object[] funcoes = { "Entrada", "SaÃ­da" };
-				int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou saÃ­daa?",
+				Object[] funcoes = { "Entrada", "Sa�da" };
+				int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou sa�daa?",
 						"Registro", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 
 				if (tipoRegistro == 0) {
@@ -213,17 +213,17 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 						registrarSaidaVeiculo(buscaPlaca(placa2));
 					
 					} catch (PeriodoInvalidoException e) {
-						JOptionPane.showMessageDialog(null, "PerÃ­odo invÃ¡lido", "Erro", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Per�odo inv�lido", "Erro", JOptionPane.ERROR_MESSAGE);
 					
 					} catch (DadosAcessoIncompletosException e) {
-						JOptionPane.showMessageDialog(null, "Data de SaÃ­da incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Data de Sa�da incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
 					}
 
 				}
 
-			} else if (buscaPlaca(placa2) == null) { // Se nÃƒÂ£o existir
+			} else if (buscaPlaca(placa2) == null) { // Se não existir
 
-				Object[] placaNaoExiste = { "Sim", "NÃ£o" };
+				Object[] placaNaoExiste = { "Sim", "N�o" };
 				int testaCadastro = JOptionPane.showOptionDialog(null, "Deseja cadastrar um carro novo?",
 						"Checar desejo de cadastro", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
 						placaNaoExiste, placaNaoExiste[0]);
@@ -233,7 +233,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 						cadastrarVeiculo();
 
 					} catch (DadosVeiculosIncompletosException e) {
-						JOptionPane.showMessageDialog(null, "Dados do VeÃ­culo estÃ£o incompletos.");
+						JOptionPane.showMessageDialog(null, "Dados do Ve�culo est�o incompletos.");
 					}
 
 				} else if (testaCadastro == 1) {
@@ -246,13 +246,12 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 		return null;
 	}
-	
-	
-		public boolean cadastrarVeiculo() throws DadosVeiculosIncompletosException {
+
+	public boolean cadastrarVeiculo() throws DadosVeiculosIncompletosException {
 
 		/**
 		 * Interface bem trabalhada, no entanto ela precisa ser finalizada no momento de
-		 * decisÃƒÂ£o se existe ou nao CNH Precisa checar nos arquivos txt se existe ou
+		 * decisão se existe ou nao CNH Precisa checar nos arquivos txt se existe ou
 		 * nao CNH
 		 * 
 		 */
@@ -277,7 +276,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 			myPanel.add(new JLabel("Vai ser mensalista? (s/n): "));
 			myPanel.add(campoMensalista);
 
-			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de VeÃ­ulo",
+			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Ve�ulo",
 					JOptionPane.OK_CANCEL_OPTION);
 
 			// Validacao
@@ -293,7 +292,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 						campoMensalista.getText().isEmpty()) {
 					
 					throw new DadosVeiculosIncompletosException();
-					//valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de VeÃ­culo",
+					//valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Ve�culo",
 						//	JOptionPane.OK_CANCEL_OPTION);
 					
 					
@@ -362,7 +361,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 									vincularVeiculosCliente(cliente, veiculo);
 
-									Object[] blocoRegistro = { "Sim", "NÃ£o" };
+									Object[] blocoRegistro = { "Sim", "N�o" };
 									int checaRegistro = JOptionPane.showOptionDialog(null,
 											"Deseja registrar entrada de carro?", "Registro de Entrada",
 											JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
@@ -370,7 +369,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 									if (checaRegistro == 0) { // se sim desja
 
-										String message1 = "VocÃª sera direcionado para Registro de Entrada";
+										String message1 = "Voc� sera direcionado para Registro de Entrada";
 
 										JOptionPane.showMessageDialog(null, message1);
 
@@ -382,19 +381,19 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 									} else if (checaRegistro == 1) {// e nao deseja
 
-										String message1 = "Cadastro de VeÃ­culo feito com sucesso.";
+										String message1 = "Cadastro de Ve�culo feito com sucesso.";
 
 										JOptionPane.showMessageDialog(null, message1);
 
 									}
 
-								} else if (buscaCNH(checaCnh) == null) { // Se nÃ£o existir nada
+								} else if (buscaCNH(checaCnh) == null) { // Se n�o existir nada
 
 									try {
 										cadastrarCliente();
 
 									} catch (DadosPessoaisIncompletoException e) {
-										JOptionPane.showMessageDialog(null, "Dados pessoais estÃ£o incompletos");
+										JOptionPane.showMessageDialog(null, "Dados pessoais est�o incompletos");
 									}
 								}
 							}
@@ -406,14 +405,14 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 					
 				
 
-					Object[] blocoRegistro = { "Sim", "NÃ£o" };
+					Object[] blocoRegistro = { "Sim", "N�o" };
 					int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?",
 							"Registro de Entrada", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
 							blocoRegistro, blocoRegistro[0]);
 
 					if (checaRegistro == 0) {
 
-						String message = "Cadastro de VeÃ­culo feito com sucesso, vocÃª sera direcionado para Registro de Entrada";
+						String message = "Cadastro de Ve�culo feito com sucesso, voc� sera direcionado para Registro de Entrada";
 
 						JOptionPane.showMessageDialog(null, message);
 
@@ -426,7 +425,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 					} else if (checaRegistro == 1) {
 
-						String message = "Cadastro de VeÃ­culo feito com sucesso.";
+						String message = "Cadastro de Ve�culo feito com sucesso.";
 
 						JOptionPane.showMessageDialog(null, message);
 
@@ -440,8 +439,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 		return false;
 
 	}
-	
-	
+
 	public boolean cadastrarCliente() throws DadosPessoaisIncompletoException {
 
 		// Inicializar
@@ -460,7 +458,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 			myPanel.setLayout(new GridLayout(6, 2));
 			myPanel.add(new JLabel("Nome: "));
 			myPanel.add(campoNome);
-			myPanel.add(new JLabel("EndereÃ§o: "));
+			myPanel.add(new JLabel("Endere�o: "));
 			myPanel.add(campoEndereco);
 			myPanel.add(new JLabel("Numero do celular: "));
 			myPanel.add(campoNumeroCelular);
@@ -485,7 +483,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 						|| campoEndereco.getText().isEmpty() || campoNumeroCelular.getText() == null || campoNumeroCelular.getText().isEmpty()
 					    || campoNumeroCnh.getText().isEmpty() ||campoPlaca.getText()== null || campoPlaca.getText().isEmpty()) {
 					throw new DadosPessoaisIncompletoException();
-					//valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de VeÃ­culo",
+					//valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Ve�culo",
 					//		JOptionPane.OK_CANCEL_OPTION);
 				} else if (valorDoBotao == 0) {
 					sair = 0;
@@ -505,14 +503,14 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 					addCliente(cliente);
 
-					Object[] blocoRegistro = { "Sim", "NÃ£o" };
+					Object[] blocoRegistro = { "Sim", "N�o" };
 					int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?",
 							"Registro de Entrada", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
 							blocoRegistro, blocoRegistro[0]);
 
 					if (checaRegistro == 0) { // se sim desja
 
-						String message1 = "VocÃª sera direcionado para Registro de Entrada";
+						String message1 = "Voc� sera direcionado para Registro de Entrada";
 
 						JOptionPane.showMessageDialog(null, message1);
 
@@ -537,19 +535,22 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 		return false;
 	}
-	
-		public void vincularVeiculosCliente(Cliente cliente, Veiculo veiculo) {
 
-		cliente.addVeiculo(veiculo); //acrescenta o veículo ao cadastro do cliente
+	public void vincularVeiculosCliente(Cliente cliente, Veiculo veiculo) {
+
+		cliente.addVeiculo(veiculo);
 
 		String message = "Veiculo vinculado com sucesso.";
 
 		JOptionPane.showMessageDialog(null, message);
 
+		/**
+		 * Vincular fica mais facil de fazer apos arquivos salvos e saber como puxar
+		 * eles
+		 */
 
 	}
-	
-	
+
 	public boolean registrarEntradaVeiculo(Veiculo veiculo) throws DadosAcessoIncompletosException {
 
 		Calendar dataEntrada = Calendar.getInstance();
@@ -582,11 +583,11 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 		Veiculo veiculoMensalista = buscaPlacaMensalista(veiculo.getPlaca());
 
 		if (veiculoMensalista != null) {
-			JOptionPane.showMessageDialog(null, "Mensalista >>> Saída liberada");
+			JOptionPane.showMessageDialog(null, "Mensalista >>> Sa�da liberada");
 			return true;
 		}
 
-		String message = "Digite a hora da saída no formato dd/MM/yyyy hh:mm";
+		String message = "Digite a hora da sa�da no formato dd/MM/yyyy hh:mm";
 		String dataInformada = JOptionPane.showInputDialog(message);
 
 		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
@@ -622,16 +623,13 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 		return true;
 	}
 
-	
-	
-	
 	public double cobrar(ControleGaragem controle) {
 
 		return cobranca.cobrar(controle.getDataEntrada(), controle.getDataSaida());
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//////////////////////////////////////// FUNÇOES
+	//////////////////////////////////////// FUN�OES
 	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -648,7 +646,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 		return null;
 	}
-		
+
 	public Veiculo buscaPlacaMensalista(String placa) {
 
 		for (Veiculo veiculo : veiculosMensalistas) {
@@ -667,14 +665,13 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 		if (CadastroVeiculo.getMensalista() == true) {
 
-			veiculosMensalistas.add(CadastroVeiculo); // Adicionando a lista especifica sÃ³ de mensalistas
+			veiculosMensalistas.add(CadastroVeiculo); // Adicionando a lista especifica só de mensalistas
 		}
 
-			veiculos.add(CadastroVeiculo); // Adicionando todos a uma outra lista (mensalistas ou nÃ£o)
+		veiculos.add(CadastroVeiculo); // Adicionando todos a uma outra lista (mensalistas ou não)
 
-		}
-	
-	
+	}
+
 	public void addControle(ControleGaragem controleGaragem) {
 
 		listaData.add(controleGaragem); // Adicionando todos veiculos e data do ControleGaragem na listaData
@@ -685,7 +682,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 	public void addCliente(Cliente cliente) {
 		clientes.add(cliente);
 	}
-	
+
 	// Método para buscar cliente pela CNH
 	public Cliente buscaCNH(int CNH) {
 
@@ -706,7 +703,7 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 		novoVeiculo.add(veiculo);
 		return novoVeiculo;
 	}
-	///
+
 	public ControleGaragem buscaData(Veiculo veiculo) {
 		for (ControleGaragem controleGaragem : listaData) {
 			if (controleGaragem.getVeiculo().equals(veiculo)) {
@@ -716,5 +713,4 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 
 		return null;
 	}
-
 }
