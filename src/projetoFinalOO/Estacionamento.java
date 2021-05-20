@@ -635,5 +635,8 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 		novoVeiculo.add(veiculo);
 		return novoVeiculo;
 	}
+	///
+	//Falta buscaData
+	/////
 
 }
