@@ -551,33 +551,29 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 	
 	//CONTINUA AQUIIIIII
 	
+		public double cobrar(ControleGaragem controle) {
+
+			return cobranca.cobrar(controle.getDataEntrada(), controle.getDataSaida());
+		}
+
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////// FUNÇOES
+		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// ////////////////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		public Veiculo buscaPlaca(String placa) {
+
+			for (Veiculo veiculo : veiculos) {
+
+				if (veiculo.getPlaca().equals(placa)) {
+
+					return veiculo;
+				}
+
+			}
+
+			return null;
+		}
 	
-	
-	public Veiculo consultarPlaca (String placa) {
-		return new Veiculo; 
-	}
-	
-	public boolean cadastrarVeiculo (Veiculo veiculo) {
-		return false;
-	}
-	
-	public boolean cadastrarCliente (Cliente cliente) {
-		return false; 
-	}
-	
-	public boolean vincularVeiculosCliente (Cliente, cliente, Veiculo veiculo) {
-		return false;
-	}
-	
-	public boolean registrarEntradaVeiculo(Veiculo veiculo) {
-		return false; 
-	}
-	
-	public boolean registrarSaidaVeiculo(Veiculo veiculo) {
-		return false; 
-	}
-	
-	public boolean cobrar(ControleGaragem controle) {
-		return 0.0;
-	}
+
 }
