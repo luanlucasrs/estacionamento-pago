@@ -1,4 +1,4 @@
-package ProjetoFinalOO.exceptions;
+package projetoFinalOO;
 
 public class PeriodoInvalidoException extends Exception {
 

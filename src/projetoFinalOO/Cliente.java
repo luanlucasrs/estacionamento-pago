@@ -1,4 +1,4 @@
-package ProjetoFinalOO;
+package projetoFinalOO;
 
 import java.util.List;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package ProjetoFinalOO.principal;
+package projetoFinalOO;
 
 import java.util.ArrayList;
 

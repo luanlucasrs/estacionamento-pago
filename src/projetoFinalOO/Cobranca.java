@@ -1,4 +1,4 @@
-package ProjetoFinalOO;
+package projetoFinalOO;
 
 public class Cobranca {
 

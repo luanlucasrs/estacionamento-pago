@@ -1,4 +1,4 @@
-package ProjetoFinalOO.exceptions;
+package projetoFinalOO;
 
  
  public classDadosVeiculosIncompletosException extends Exception{

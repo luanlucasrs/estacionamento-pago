@@ -1,4 +1,4 @@
-package ProjetoFinalOO;
+package projetoFinalOO;
 
 public class Veiculo {
 
@@ -12,6 +12,10 @@ public class Veiculo {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.mensalista = mensalista;
+	}
+	
+	public Veiculo() {
+	
 	}
 
 	public String getPlaca() {
