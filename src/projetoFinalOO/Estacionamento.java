@@ -442,9 +442,103 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 	}
 	
 	
+	public boolean cadastrarCliente() throws DadosPessoaisIncompletoException {
+
+		// Inicializar
+		JTextField campoNome = new JTextField(10);
+		JTextField campoEndereco = new JTextField(10);
+		JTextField campoNumeroCelular = new JTextField(10);
+		JTextField campoNumeroTelefone = new JTextField(10);
+		JTextField campoNumeroCnh = new JTextField(10);
+		JTextField campoPlaca = new JTextField(10);
+		JPanel myPanel = new JPanel();
+
+		int valorDoBotao = 0;
+
+		if (valorDoBotao == 0) {
+
+			myPanel.setLayout(new GridLayout(6, 2));
+			myPanel.add(new JLabel("Nome: "));
+			myPanel.add(campoNome);
+			myPanel.add(new JLabel("Endereço: "));
+			myPanel.add(campoEndereco);
+			myPanel.add(new JLabel("Numero do celular: "));
+			myPanel.add(campoNumeroCelular);
+			myPanel.add(new JLabel("Numero de telefone: "));
+			myPanel.add(campoNumeroTelefone);
+			myPanel.add(new JLabel("CNH: "));
+			myPanel.add(campoNumeroCnh);
+			myPanel.add(new JLabel("Placa: "));
+			myPanel.add(campoPlaca);
+
+			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Cliente",
+					JOptionPane.OK_CANCEL_OPTION);
+
+			// Validacao
+
+			int sair = 1;
+
+			while (sair != 0) {
+				if (valorDoBotao == 2 || valorDoBotao == -1) {
+					sair = 0;
+				} else if (campoNome.getText() == null || campoNome.getText().isEmpty()  ||campoEndereco.getText() == null 
+						|| campoEndereco.getText().isEmpty() || campoNumeroCelular.getText() == null || campoNumeroCelular.getText().isEmpty()
+					    || campoNumeroCnh.getText().isEmpty() ||campoPlaca.getText()== null || campoPlaca.getText().isEmpty()) {
+					throw new DadosPessoaisIncompletoException();
+					//valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo",
+					//		JOptionPane.OK_CANCEL_OPTION);
+				} else if (valorDoBotao == 0) {
+					sair = 0;
+					
+				}
+
+				if (valorDoBotao == 0) {
+					String nome = campoNome.getText();
+					String endereco = campoEndereco.getText();
+					String numeroCelular = campoNumeroCelular.getText();
+					String numeroTelefone = campoNumeroTelefone.getText();
+					int numeroCnh = Integer.parseInt(campoNumeroCnh.getText());
+					String nPlaca = campoPlaca.getText();
+
+					Cliente cliente = new Cliente(nome, endereco, numeroCelular, numeroTelefone, numeroCnh,
+							listaVeiculos(buscaPlaca(nPlaca)));
+
+					addCliente(cliente);
+
+					Object[] blocoRegistro = { "Sim", "Não" };
+					int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?",
+							"Registro de Entrada", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+							blocoRegistro, blocoRegistro[0]);
+
+					if (checaRegistro == 0) { // se sim desja
+
+						String message1 = "Você sera direcionado para Registro de Entrada";
+
+						JOptionPane.showMessageDialog(null, message1);
+
+						try {
+							registrarEntradaVeiculo(buscaPlaca(nPlaca));
+						
+						} catch (DadosAcessoIncompletosException e) {
+							JOptionPane.showMessageDialog(null, "Data de Entrada incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
+						}
+
+					} else if (checaRegistro == 1) {// e nao deseja
+
+						String message1 = "Cadastro de Cliente feito com sucesso.";
+
+						JOptionPane.showMessageDialog(null, message1);
+
+					}
+				}
+			}
+
+		}
+
+		return false;
+	}
 	
-	
-	// CONTINUA AQUIII
+	//CONTINUA AQUIIIIII
 	
 	
 	
