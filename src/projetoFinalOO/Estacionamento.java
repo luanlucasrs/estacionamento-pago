@@ -248,6 +248,201 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 	}
 	
 	
+		public boolean cadastrarVeiculo() throws DadosVeiculosIncompletosException {
+
+		/**
+		 * Interface bem trabalhada, no entanto ela precisa ser finalizada no momento de
+		 * decisÃ£o se existe ou nao CNH Precisa checar nos arquivos txt se existe ou
+		 * nao CNH
+		 * 
+		 */
+
+		// Inicializar
+		JTextField campoPlaca = new JTextField(10);
+		JTextField campoMarca = new JTextField(10);
+		JTextField campoModelo = new JTextField(10);
+		JTextField campoMensalista = new JTextField(10);
+		JPanel myPanel = new JPanel();
+
+		int valorDoBotao = 0;
+
+		if (valorDoBotao == 0) {
+			myPanel.setLayout(new GridLayout(5, 2, 10, 10));
+			myPanel.add(new JLabel("Placa: "));
+			myPanel.add(campoPlaca);
+			myPanel.add(new JLabel("Marca: "));
+			myPanel.add(campoMarca);
+			myPanel.add(new JLabel("Modelo: "));
+			myPanel.add(campoModelo);
+			myPanel.add(new JLabel("Vai ser mensalista? (s/n): "));
+			myPanel.add(campoMensalista);
+
+			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veíulo",
+					JOptionPane.OK_CANCEL_OPTION);
+
+			// Validacao
+
+			int sair = 1;
+
+			while (sair != 0) {
+				if (valorDoBotao == 2 || valorDoBotao == -1) {
+					sair = 0;
+				} else if (campoPlaca.getText() == null || campoPlaca.getText().isEmpty() || campoMarca.getText() == null ||
+						campoMarca.getText().isEmpty()
+						|| campoModelo.getText() == null || campoModelo.getText().isEmpty() || campoMensalista.getText() == null || 
+						campoMensalista.getText().isEmpty()) {
+					
+					throw new DadosVeiculosIncompletosException();
+					//valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo",
+						//	JOptionPane.OK_CANCEL_OPTION);
+					
+					
+				} else if (valorDoBotao == 0) {
+					sair = 0;
+					
+				}
+			}
+
+			if (valorDoBotao == 0) {
+				String placa = campoPlaca.getText();
+				String marca = campoMarca.getText();
+				String modelo = campoModelo.getText();
+				String mensalista = campoMensalista.getText();
+
+				boolean mensal = true;
+				
+				if (mensalista.equals("s")) {
+					 mensal = true;
+					
+					
+				} else if (mensalista.equals("n")) {
+					 mensal = false;
+				
+				}
+				 
+			
+				Veiculo veiculo = new Veiculo(placa, marca, modelo, mensal);
+				addVeiculo(veiculo);
+
+			
+
+				if (mensal) { /// SIM VAI SER MENSALISTA
+
+					int valorPainel = 0;
+
+					if (valorPainel == 0) { // Checar se CNH Existe -- problema critico
+
+						JTextField campoCnh = new JTextField(10);
+
+						myPanel.add(new JLabel("CNH: "));
+						myPanel.add(campoCnh);
+						valorPainel = JOptionPane.showConfirmDialog(null, myPanel, "Checa CNH",
+								JOptionPane.OK_CANCEL_OPTION);
+
+						int sair1 = 1;
+
+						while (sair1 != 0) {
+							if (valorPainel == 2 || valorPainel == -1) {
+								sair1 = 0;
+							} else if (campoCnh.getText().isEmpty()) {
+
+								valorPainel = JOptionPane.showConfirmDialog(null, myPanel, "Checa CNH",
+										JOptionPane.OK_CANCEL_OPTION);
+							} else if (valorPainel == 0) {
+								sair1 = 0;
+							}
+
+							if (valorPainel == 0) {
+
+								int checaCnh = Integer.parseInt(campoCnh.getText());
+
+								if (buscaCNH(checaCnh) != null) { // Se existir algo
+
+									Cliente cliente = buscaCNH(checaCnh);
+
+									vincularVeiculosCliente(cliente, veiculo);
+
+									Object[] blocoRegistro = { "Sim", "Não" };
+									int checaRegistro = JOptionPane.showOptionDialog(null,
+											"Deseja registrar entrada de carro?", "Registro de Entrada",
+											JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+											blocoRegistro, blocoRegistro[0]);
+
+									if (checaRegistro == 0) { // se sim desja
+
+										String message1 = "Você sera direcionado para Registro de Entrada";
+
+										JOptionPane.showMessageDialog(null, message1);
+
+										try {
+											registrarEntradaVeiculo(veiculo);
+										} catch (DadosAcessoIncompletosException e) {
+											JOptionPane.showMessageDialog(null, "Data de Entrada incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
+										}
+
+									} else if (checaRegistro == 1) {// e nao deseja
+
+										String message1 = "Cadastro de Veículo feito com sucesso.";
+
+										JOptionPane.showMessageDialog(null, message1);
+
+									}
+
+								} else if (buscaCNH(checaCnh) == null) { // Se não existir nada
+
+									try {
+										cadastrarCliente();
+
+									} catch (DadosPessoaisIncompletoException e) {
+										JOptionPane.showMessageDialog(null, "Dados pessoais estão incompletos");
+									}
+								}
+							}
+						}
+
+					}
+
+				} else if (!mensal) { /// NAO NAO VAI SER MENSALISTA
+					
+				
+
+					Object[] blocoRegistro = { "Sim", "Não" };
+					int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?",
+							"Registro de Entrada", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+							blocoRegistro, blocoRegistro[0]);
+
+					if (checaRegistro == 0) {
+
+						String message = "Cadastro de Veículo feito com sucesso, você sera direcionado para Registro de Entrada";
+
+						JOptionPane.showMessageDialog(null, message);
+
+						try {
+							registrarEntradaVeiculo(veiculo);
+						
+						} catch (DadosAcessoIncompletosException e) {
+							JOptionPane.showMessageDialog(null, "Data de Entrada incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
+						}
+
+					} else if (checaRegistro == 1) {
+
+						String message = "Cadastro de Veículo feito com sucesso.";
+
+						JOptionPane.showMessageDialog(null, message);
+
+					}
+				}
+
+			} // check
+		} // check 
+		//a
+
+		return false;
+
+	}
+	
+	
+	
 	
 	// CONTINUA AQUIII
 	
