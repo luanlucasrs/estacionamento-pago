@@ -154,6 +154,104 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 	 * 
 	 */
 
+	public Veiculo consultarPlaca(String placa) {
+
+		/**
+		 * Rotina simplesmente representativa para entender o final do codigo Esta
+		 * rotina deve ser alterada para testar se realmente existe e nÃ£o por uma
+		 * option pane e checando os arquivos txt
+		 * 
+		 */
+		int valorDoBotao = 0;
+		JTextField campoTestePlaca = new JTextField(10);
+
+		JPanel myPanel = new JPanel();
+		if (valorDoBotao == 0) {
+			myPanel.setLayout(new GridLayout(1, 2));
+			myPanel.add(new JLabel("Insira a placa do veículo: "));
+			myPanel.add(campoTestePlaca);
+
+			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Checar placa", JOptionPane.OK_CANCEL_OPTION);
+
+			int sair = 1;
+
+			while (sair != 0) {
+				if (valorDoBotao == 2 || valorDoBotao == -1) {
+					sair = 0;
+				} else if (campoTestePlaca.getText().isEmpty()) {
+
+					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Checar placa",
+							JOptionPane.OK_CANCEL_OPTION);
+				} else if (valorDoBotao == 0) {
+					sair = 0;
+				}
+
+			}
+
+		}
+
+		if (valorDoBotao == 0) {
+			String placa2 = campoTestePlaca.getText();
+			buscaPlaca(placa2);
+
+			if (buscaPlaca(placa2) != null) { // Se placa existir
+
+				Object[] funcoes = { "Entrada", "Saída" };
+				int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou saídaa?",
+						"Registro", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
+
+				if (tipoRegistro == 0) {
+					try {
+						registrarEntradaVeiculo(buscaPlaca(placa2));
+					
+					} catch (DadosAcessoIncompletosException e) {
+						JOptionPane.showMessageDialog(null, "Data de Entrada incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
+					}
+
+				} else if (tipoRegistro == 1) {
+					try {
+						registrarSaidaVeiculo(buscaPlaca(placa2));
+					
+					} catch (PeriodoInvalidoException e) {
+						JOptionPane.showMessageDialog(null, "Período inválido", "Erro", JOptionPane.ERROR_MESSAGE);
+					
+					} catch (DadosAcessoIncompletosException e) {
+						JOptionPane.showMessageDialog(null, "Data de Saída incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
+					}
+
+				}
+
+			} else if (buscaPlaca(placa2) == null) { // Se nÃ£o existir
+
+				Object[] placaNaoExiste = { "Sim", "Não" };
+				int testaCadastro = JOptionPane.showOptionDialog(null, "Deseja cadastrar um carro novo?",
+						"Checar desejo de cadastro", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null,
+						placaNaoExiste, placaNaoExiste[0]);
+
+				if (testaCadastro == 0) {// Se deseja fazer o cadastro
+					try {
+						cadastrarVeiculo();
+
+					} catch (DadosVeiculosIncompletosException e) {
+						JOptionPane.showMessageDialog(null, "Dados do Veículo estão incompletos.");
+					}
+
+				} else if (testaCadastro == 1) {
+						
+				}
+
+			}
+
+		}
+
+		return null;
+	}
+	
+	
+	
+	// CONTINUA AQUIII
+	
+	
 	
 	public Veiculo consultarPlaca (String placa) {
 		return new Veiculo; 
