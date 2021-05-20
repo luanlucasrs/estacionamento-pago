@@ -538,6 +538,17 @@ public boolean isAberto() throws EstacionamentoFechadoException {
 		return false;
 	}
 	
+		public void vincularVeiculosCliente(Cliente cliente, Veiculo veiculo) {
+
+		cliente.addVeiculo(veiculo); //acrescenta o veículo ao cadastro do cliente
+
+		String message = "Veiculo vinculado com sucesso.";
+
+		JOptionPane.showMessageDialog(null, message);
+
+
+	}
+	
 	//CONTINUA AQUIIIIII
 	
 	
